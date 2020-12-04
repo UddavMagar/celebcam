@@ -1,0 +1,24 @@
+.u1{
+
+    background: lightskyblue;
+}
+
+.u2{
+
+    background: cornflowerblue;
+}
+
+
+#chat-form{
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+
+    margin-bottom: 0;
+
+}
+
+#msg-list-div{
+    height: 400px;
+    overflow: auto;
+}

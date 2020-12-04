@@ -1,0 +1,82 @@
+<html>
+{% load static %}
+
+<head>
+    <title> Chat  with: {{ nameaa  }} </title>
+
+        <link href="{% static "chat.css" %}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+
+
+<div class ="chatbox" >
+         <div class = "chatlogs">
+            <div class = "chat_friend">
+                                        <div class = "chat-image"></div>
+                                        <div class="chat-message">
+                                            <p>{{ msg }}</p>
+                                        </div>
+
+            </div>
+
+                <div class = "chat_friend2">
+                    <div class = "chat-image"></div>
+                                        <div class="chat-message">
+
+
+                                        </div>
+
+                </div>
+
+            </div>
+
+
+
+{#        <form class="chat-form" action ={% url 'chat' %} method="POST" >#}
+{#            {% csrf_token %}#}
+{##}
+{#            <input type ="text" rows="5" name="text_msg ">#}
+{#            <input type = "submit">Send</input>#}
+{#        </form>#}
+
+    <form action="{% url 'chat' %}" method="POST">
+	{% csrf_token %}
+
+		   <div class="form-group">
+
+		    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Text" name="text_msg">
+
+		   </div>
+
+
+	   <button type="submit" class="btn btn-default">Submit</button>
+
+</form>
+
+
+
+            </div>
+
+
+
+
+         </div>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+</body>
+</html>
+
+

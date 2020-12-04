@@ -1,0 +1,148 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Celibrity Detail</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+      .button1 {background-color: black;}
+      .detailbody {padding-left: 300px;padding-top: 20px;padding-right: 300px; width: 100%;}
+      .fa {font-size: 25px;}
+      .checked {color: orange;}
+  </style>
+</head>
+<body style="background-color: black;">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#"><b style="color: white;">Cameo</b></a>
+          </div>
+          <div class="d-flex align-items-center">
+            <ul class="nav navbar-nav navbar-right" style="padding-top: 10px;">
+              <input type="text" placeholder="Search.." style="padding-left: 20px;padding-right: 20px;">
+              <button type="button" class="button1" style="padding-left: 20px;padding-right: 20px;">
+                <b style="color: white;">Login</b></button>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="detailbody">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="">
+                    <img src="{% static 'images/Snoop.jpg' %}" class="img-circle" alt="Snoop" style="width: 100%;">
+                </a>
+            </div>
+            <div class="col-md-8">
+                <h1 style="color: white;font-size: xx-large;font-weight: bold;">Snoop Dogg</h1>
+                <div class="caption">
+                    <p style="color:turquoise;">Rapper</p>
+                  </div>
+                  <p style="color: white;">
+                    It’s so much fun when u doing it with the double. 
+                    G live and personal messages. For names please provide phonetic pronunciation. 
+                    For promos & endorsements, please book at my business price.
+                </p>
+            </div>
+        </div>
+      </div>
+ 
+        <div class="container p-3 my-3 bg-dark text-white" style="background-color: gray;
+        border-radius: 25px;margin-top: 30px;padding: 10px;">
+          <div class="row">
+            <div class="col-md-3">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <div class="caption">
+                <p style="color:turquoise;">4.9</p>
+              </div>
+            </div>
+            <div class="col-md-9">
+                <div class="caption">
+                    <p style="color:turquoise;">Reviewed by G***** on November 25th, 2020</p>
+                  </div>
+                  <p style="color: white;">
+                    Just when I thought I couldn’t love snoop dogg anymore... 
+                    this made my husband’s entire birthday. So awesome to have this video - 
+                    it’s amazing and we will be talking about this for years! Snoop you are the fucking man!
+                </p>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-lg btn-block" 
+        style="background-color:crimson;" data-toggle="modal" data-target="#myModal">Video Request $900</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" 
+        style="background-color:crimson;"data-toggle="modal" data-target="#mychatModal">Chat Request $1000</button>
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Write Message:</h4>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" rows="5" id="message"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Payment</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+            </div>
+        </div>
+        <div class="modal fade" id="mychatModal" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Chat Detail</h4>
+              </div>
+              <div class="modal-body">
+                <p>Snoop Dogg will be available at 5PM for chat session. If you want
+                  to continue go with the payment process.
+                </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Payment</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        </div>
+
+        <div class="detailbody">
+        <div class="row">
+          <p style="padding-top: 20px;padding-left: 50px;padding-bottom: 20px;
+          color: white;font-size: xx-large;"><b>This week videos</b></p>
+          <div class="col-md-4">
+              <a href="">
+                <img src="{% static 'images/Categoriesimg0.jpg' %}" alt="Office" style="width:100%;border: none;">
+              </a>
+          </div>
+          <div class="col-md-4">
+              <a href="">
+                <img src="{% static 'images/Categoriesimg1.jpg' %}" alt="Disney" style="width:100%">
+              </a>
+          </div>
+          <div class="col-md-4">
+              <a href="/w3images/fjords.jpg">
+                <img src="{% static 'images/Categoriesimg2.jpg' %}" alt="Game of Thrones" style="width:100%">
+              </a>
+          </div>
+        </div>
+        </div>
+</body>
+</html>

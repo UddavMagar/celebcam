@@ -1,0 +1,31 @@
+{#<ul>#}
+{#    {%  for i in online_users %}#}
+{##}
+{#<a href="{% url 'chat' %}?i={{ i.0 }}">{{ i }}</a>#}
+{##}
+{#    {% endfor %}#}
+
+
+
+<html>
+<head> <title>Registered users </title>
+
+    <!-- Latest compiled and minified CSS -->
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+</head>
+<body>
+<ul class="list-group">
+
+    {%  for i in online_users %}
+
+  <li class="list-group-item list-group-item-success">
+      <span class="glyphicon glyphicon-user" ></span>
+      <a href="{% url 'chat' %}?i={{ i }}">{{ i }}</a></li>
+   {% endfor %}
+</ul>
+
+</body>
+
+</html>

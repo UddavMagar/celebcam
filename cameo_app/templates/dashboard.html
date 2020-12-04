@@ -1,0 +1,33 @@
+<html>
+<head><title>dashboard</title>
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+
+
+</head>
+</html>
+<body>
+<div class="jumbotron">
+<h1> DashBoard</h1>
+</div>
+
+
+
+
+
+<a href= "{% url 'logout' %}" class="btn btn-default" ><span class="glyphicon glyphicon-off" ></span>LogOut</a>
+{#<button type="button" class="btn btn-default"><a href= "{% url 'logout' %}" ><span class="glyphicon glyphicon-off" ></span>LogOut</a></button>#}
+
+{#<button type="button" class="btn btn-default"><a href= "{% url 'online' %}" ><span class="glyphicon glyphicon-user" ></span>online contacts</a></button>#}
+<a href= "{% url 'online' %}" ><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-user" ></span>online contacts</button></a>
+
+
+
+</body>
+</html>
+
+
+

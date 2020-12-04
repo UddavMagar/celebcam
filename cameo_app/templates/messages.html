@@ -1,0 +1,9 @@
+{% for i in chat %}
+    {% if i.msg_from == request.session.username %}
+        <li class="text-right list-group-item">{{ i.text_msg}}</li>
+    {% else %}
+        <li class="text-left list-group-item">{{ i.text_msg}}</li>
+    {% endif %}
+{% empty %}
+    <li class="text-right list-group-item">No messages yet!</li>
+{% endfor %}
