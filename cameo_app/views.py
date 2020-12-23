@@ -36,22 +36,20 @@ def register_fun(request):
 
 
 def login_fun(request):
-    if request.session.__contains__('username'):
-        return render(request, 'dashboard.html', {})
-
-
     if request.method == 'POST':
         uname = request.POST.get('name', False)
         pwd = request.POST.get('password', False)
+        utype = models.login_model(uname, pwd)
 
-        phone_no = models.login_model(uname, pwd)
-        # print uname + pwd
-        if phone_no != None:
+
+        if utype != None:
             request.session['username'] = uname
-            request.session['phone']= phone_no
-
-            models.is_active(uname, phone_no)
-            return render(request, 'dashboard.html')
+            request.session['usertype']= utype
+            models.is_active(uname, utype)
+            if utype == "fans":
+                return redirect('homepage')
+            else:
+                return redirect('celibrityhome')
     else:
         return render(request, 'login.html', {})
 
@@ -61,8 +59,8 @@ def login_fun(request):
 
 def logout_fun(request):
     uname= request.session['username']
-    phone= request.session['phone']
-    models.is_inactive(uname,phone)
+    utype= request.session['usertype']
+    models.is_inactive(uname,utype)
     request.session.flush()
     return redirect('login')
 
@@ -102,11 +100,21 @@ def messages(request):
 
 
 def homepage(request):
-    return render(request, 'Homepage.html' )
+    if request.session.__contains__('username'):
+        return render(request, 'Homepage.html',{'userName': request.session['username']})
+    else:
+        return render(request, 'Homepage.html',{'userName': None})
 
 
 def Celibritydetail(request):
-    return render(request, 'Celibritydetail.html' )
+    if request.session.__contains__('username'):
+        return render(request, 'Celibritydetail.html',{'userName': request.session['username']})
+    else:
+        return render(request, 'Celibritydetail.html',{'userName': None})
+    
 
-def Celibrityhome(request):
-    return render(request, 'Celibrityhome.html' )
+def celibrityhome(request):
+    if request.session.__contains__('username'):
+        return render(request, 'Celibrityhome.html',{'userName': request.session['username']})
+    else:
+        return render(request, 'Celibrityhome.html',{'userName': None})

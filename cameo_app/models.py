@@ -6,7 +6,7 @@ def mongo_conn():
         print ("mongo")
         conn = MongoClient(host='127.0.0.1', port=27017)
         print("MongoDB Connected", conn)
-        return conn.cameo_users
+        return conn.chat_application
     except Exception as e:
         print ("Error in mongo connection: ", e)
 
@@ -14,21 +14,20 @@ def mongo_conn():
 db = mongo_conn()
 
 def register_model(name, password, phone, email):
-	db.user_master.insert({'name':name,'email':email,'password':password,'phone':phone})
-
+	db.user_master.insert({'name':name,'email':email,'password':password,'phone':phone,'user_type':"fans"})
+	
 
 def login_model(name, pwd):
 	data = db.user_master.find_one({'name':name, 'password':pwd})
 	if data:
-		return data['phone']
+		return data['user_type']
 
 
+def is_active(uname,utype):
+	db.user_master.update({'name':uname,'user_type':utype},{'$set':{'active':1}})
 
-def is_active(uname,phone_no):
-	db.user_master.update({'name':uname,'phone':phone_no},{'$set':{'active':1}})
-
-def is_inactive(uname,phone_no):
-	db.user_master.update({'name':uname,'phone':phone_no},{'$set':{'active':0}})
+def is_inactive(uname,utype):
+	db.user_master.update({'name':uname,'user_type':utype},{'$set':{'active':0}})
 
 
 def is_online(current_user):
