@@ -15,7 +15,18 @@
       .detailbody {padding-left: 300px;padding-top: 20px;padding-right: 300px; width: 100%;}
       .fa {font-size: 25px;}
       .checked {color: orange;}
+      .notification .badge {position: absolute;
+          top: 0px;right: -10px;padding: 5px 10px;
+          border-radius: 50%;background-color: red;color: white;}
   </style>
+  <script type="text/javascript">
+  function myFunction() {
+    var username = "{{userlogin}}";
+    if (username=="nouser"){
+      window.location.href = "http://127.0.0.1:8000/login";
+    }
+  }
+  </script>
 </head>
 <body style="background-color: black;">
     <nav class="navbar navbar-inverse">
@@ -36,12 +47,19 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
               {% if userName is None  %}
-              <li><a href= "login"><span class="glyphicon glyphicon-log-in" ></span><b> Login</b></a></li>
-              {#<li><a href= "login" ><span class="glyphicon glyphicon-log-in" ></span><b> Login</b></a></li>#}
+              <li><a href= "http://127.0.0.1:8000/login"><span class="glyphicon glyphicon-log-in" ></span><b> Login</b></a></li>
+              {#<li><a href= "http://127.0.0.1:8000/login" ><span class="glyphicon glyphicon-log-in" ></span><b> Login</b></a></li>#}
               {% else %}
               <li><p class="navbar-brand" style="color: blanchedalmond;"><b>Hello {{ userName }}</b></p></li>
               <li><a href= "{% url 'logout' %}"><span class="glyphicon glyphicon-off" ></span><b> LogOut</b></a></li>
               {#<li><a href= "{% url 'logout' %}" ><span class="glyphicon glyphicon-off" ></span><b> LogOut</b></a></li>#}
+              <li><a href= "{% url 'notification' %}"><span class="glyphicon glyphicon-bell" ></span>
+                <span class="badge">{{ count }}</span></a></li>
+              {% endif %}
+              {% if status %}
+              <li><a href="{% url 'chat' %}?i={{ otheruser }}">
+              <span class="glyphicon glyphicon-comment"></span>
+              </a></li>
               {% endif %}
             </ul>
         </div>
@@ -52,18 +70,15 @@
         <div class="row">
             <div class="col-md-3">
                 <a href="">
-                    <img src="{% static 'images/Snoop.jpg' %}" class="img-circle" alt="Snoop" style="width: 100%;">
+                    <img src="{% static 'images/+celebrityname+.jpg' %}" class="img-circle" alt="Snoop" style="width: 100%;">
                 </a>
             </div>
             <div class="col-md-8">
-                <h1 style="color: white;font-size: xx-large;font-weight: bold;">Snoop Dogg</h1>
+                <h1 style="color: white;font-size: xx-large;font-weight: bold;">{{celebrityname}} {{lastname}}</h1>
                 <div class="caption">
-                    <p style="color:turquoise;">Rapper</p>
+                    <p style="color:turquoise;">{{ feature }}</p>
                   </div>
-                  <p style="color: white;">
-                    It’s so much fun when u doing it with the double. 
-                    G live and personal messages. For names please provide phonetic pronunciation. 
-                    For promos & endorsements, please book at my business price.
+                  <p style="color: white;">{{ description }}
                 </p>
             </div>
         </div>
@@ -71,71 +86,65 @@
  
         <div class="container p-3 my-3 bg-dark text-white" style="background-color: gray;
         border-radius: 25px;margin-top: 30px;padding: 10px;">
-          <div class="row">
-            <div class="col-md-3">
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
-              <div class="caption">
-                <p style="color:turquoise;">4.9</p>
-              </div>
-            </div>
-            <div class="col-md-9">
-                <div class="caption">
-                    <p style="color:turquoise;">Reviewed by G***** on November 25th, 2020</p>
-                  </div>
-                  <p style="color: white;">
-                    Just when I thought I couldn’t love snoop dogg anymore... 
-                    this made my husband’s entire birthday. So awesome to have this video - 
-                    it’s amazing and we will be talking about this for years! Snoop you are the fucking man!
-                </p>
-            </div>
-        </div>
-        <button type="button" class="btn btn-primary btn-lg btn-block" 
-        style="background-color:crimson;" data-toggle="modal" data-target="#myModal">Video Request $900</button>
-        <button type="button" class="btn btn-primary btn-lg btn-block" 
-        style="background-color:crimson;"data-toggle="modal" data-target="#mychatModal">Chat Request $1000</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="myFunction()"
+        style="background-color:crimson;" data-toggle="modal" data-target="#myModal">Video Request ${{ videorate }}</button>
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="myFunction()"
+        style="background-color:crimson;"data-toggle="modal" data-target="#mychatModal">Chat Request ${{ chatrate }}</button>
+        <form class="form" action="{% url 'service' %}" method="POST">
+          {% csrf_token %}
         <div class="modal fade" id="myModal" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Write Message:</h4>
+                <h4 class="modal-title" style="color:blue;font-weight: bold">{{celebrityname}} {{lastname}} -  Video Request</h4>
               </div>
+              <p>
+                Write message you want in your video message:
+              </p>
               <div class="form-group">
-                <textarea class="form-control" rows="5" id="message"></textarea>
+                <textarea class="form-control" rows="8" id="message" name="message"></textarea>
               </div>
+              <input type="hidden" id="loginuser" name="loginuser" value="{{userName}}">
+              <input type="hidden" id="celebrityname" name="celebrityname" value="{{celebrityname}}">
+              <input type="hidden" id="servicetype" name="servicetype" value="video">
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Payment</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+                <button type="submit" class="btn btn-default">Done</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
               </div>
             </div>
             </div>
         </div>
+        </form>
+        <form class="form" action="{% url 'service' %}" method="POST">
+          {% csrf_token %}
         <div class="modal fade" id="mychatModal" role="dialog">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Chat Detail</h4>
+                <h4 class="modal-title" style="color:blue;font-weight: bold">{{celebrityname}} {{lastname}} -  Chat Request</h4>
               </div>
               <div class="modal-body">
-                <p>Snoop Dogg will be available at 5PM for chat session. If you want
-                  to continue go with the payment process.
+                <p>If you want to continue go with the payment process.
+                  Chat will be accepted only {{celebrityname}} {{lastname}} accept your request.
+                  Date and time will be provided shortly after request is accepted.
                 </p>
               </div>
+              <input type="hidden" id="loggedinusername" name="loginuser" value="{{userName}}">
+              <input type="hidden" id="celebrityname" name="celebrityname" value="{{celebrityname}}">
+              <input type="hidden" id="servicetype" name="servicetype" value="Chat">
+              <input type="hidden" id="message" name="message" value="Chat">
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Payment</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+                <button type="submit" class="btn btn-default">Done</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
             </div>
-            
           </div>
         </div>
+      </form>
         </div>
 
         <div class="detailbody">
@@ -159,5 +168,46 @@
           </div>
         </div>
         </div>
+        {% for data in datas %}
+        <div class="container p-3 my-3 bg-dark text-white" style="background-color: gray;
+        border-radius: 25px;margin-top: 30px;padding: 10px;">
+          <div class="row">
+            <div class="col-md-3">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <div class="caption">
+                <p style="color:turquoise;">4.9</p>
+              </div>
+            </div>
+            <div class="col-md-9">
+                <div class="caption">
+                    <p style="color:turquoise;">Reviewed by {{ data.loginuser }}</p>
+                  </div>
+                  <p style="color: white;">{{ data.message }}
+                </p>
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+        {% if userName is None  %}
+        {% else %}
+        <div class="container p-3 my-3 bg-dark text-white" style="background-color: gray;
+        border-radius: 25px;margin-top: 30px;padding: 10px;">
+          <form class="form" action="{% url 'comment' %}" method="POST">
+            {% csrf_token %}
+            <p>
+              Comments For {{ celebrityname }}:
+            </p>
+            <div class="form-group">
+              <textarea class="form-control" rows="8" id="message" name="message" style="background: black;color: blanchedalmond;"></textarea>
+            </div>
+            <input type="hidden" id="celebname" name="celebrityname" value="{{ celebrityname }}">
+            <button type="submit" class="btn btn-success">Submit</button>
+          </form>
+        </div>
+        {% endif %}
 </body>
 </html>

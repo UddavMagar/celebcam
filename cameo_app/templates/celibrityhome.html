@@ -43,56 +43,52 @@
               <li><a href= "{% url 'logout' %}"><span class="glyphicon glyphicon-off" ></span><b> LogOut</b></a></li>
               {#<li><a href= "{% url 'logout' %}" ><span class="glyphicon glyphicon-off" ></span><b> LogOut</b></a></li>#}
               {% endif %}
+              {% if status %}
+              <li><a href="{% url 'chat' %}?i={{ otheruser }}">
+              <span class="glyphicon glyphicon-comment"></span>
+              </a></li>
+              {% endif %}
             </ul>
         </div>
         </div>
       </nav>
 
-      <div class="detailbody">
-      <div class="row">
-        <div class="col-md-3">
-            <a href="">
-                <img src="{% static 'images/Snoop.jpg' %}" class="img-circle" alt="Snoop" style="width: 100%;">
-            </a>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star checked"></span>
-            <span class="fa fa-star"></span>
-            <div class="caption">
-              <p style="color:turquoise;">4.9</p>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <h1 style="color: white;font-size: xx-large;font-weight: bold;">Snoop Dogg</h1>
-            <div class="caption">
-                <p style="color:turquoise;">Rapper</p>
-              </div>
-              <p style="color: white;">
-                It’s so much fun when u doing it with the double. 
-                G live and personal messages. For names please provide phonetic pronunciation. 
-                For promos & endorsements, please book at my business price.
-            </p>
-        </div>
-        </div>
-    </div>
-    </div>
     <div class="row">
-        <div class="col-md-4">
             <div class="container p-3 my-3 bg-dark text-white" style="width: 95%;">
-                <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-                    <a class="navbar-brand" href="#">Logo</a>
-                  </nav>
-                <p>This container has a dark background color and a white text, and some extra padding and margins.</p>
+                <h1 style="color: cornsilk;">Requests For you</h1>
+                {% for data in datas %}
+                <div class="container p-2 my-2 bg-primary text-white">
+                  <h1>Requested By {{data.loginuser}}</h1>
+                  <h1>For {{data.servicetype}}</h1>
+                  <p>Message: {{data.message}}</p>
+                  <form action="{% url 'upload' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" id="requestuser" name="requestuser" value="{{data.loginuser}}">
+                    <input type="hidden" id="celebrityname" name="celebrityname" value="{{userName}}">
+                    <label for="img">Select Video:</label>
+                    <input type="file" id="video" name="video" accept="video/*">
+                    <button type="submit" class="btn btn-info">Upload</button>
+                  </form>
+                </div>
+                <br>
+                {% endfor %}
+                {% for data in chatdatas %}
+                <div class="container p-2 my-2 bg-primary text-white">
+                  <h1>Requested By {{data.loginuser}}</h1>
+                  <h1>For {{data.servicetype}}</h1>
+                  <p>Select data and time:</p>
+                  <form action="{% url 'chattime' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" id="requestuser" name="requestuser" value="{{data.loginuser}}">
+                    <input type="hidden" id="celebrityname" name="celebrityname" value="{{userName}}">
+                    <input type="datetime-local" id="daytime" name="daytime" style="color: black;">
+                    <input type="submit" style="color: black;">
+                  </form>
+                </div>
+                <br>
+                {% endfor %}
               </div>
-        </div>
-        <div class="col-md-4">
-            <div class="container p-3 my-3 bg-dark text-white" style="width: 95%;">
-                <h1>My First Bootstrap Page</h1>
-                <p>This container has a dark background color and a white text, and some extra padding and margins.</p>
-              </div>
-        </div>
-        </div>
+        
     </div>
 </body>
 </html>

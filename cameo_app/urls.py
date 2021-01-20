@@ -24,5 +24,11 @@ urlpatterns = [
     url(r'^$', views.homepage, name='homepage'),
     url(r'^detail/$', views.Celibritydetail, name='celibritydetail'),
     url(r'^celibrity/$', views.celibrityhome, name='celibrityhome'),
+    url(r'^service/$', views.request_services, name='service'),
+    url(r'^upload/$', views.upload, name='upload'),
+    url(r'^download/$', views.download, name='download'),
+    url(r'^notification/$', views.notification, name='notification'),
+    url(r'^chattime/$', views.chattime, name='chattime'),
+    url(r'^comment/$', views.comment, name='comment'),
 ]
 

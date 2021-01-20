@@ -15,9 +15,23 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
 
-<body>
-    <div id="chat-body" class="panel panel-default" style="clear:both;">
-        <div class="panel-heading">Chat Box</div>
+<body style="background-color: black;">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#"><b style="color: white;">Cameo</b></a>
+            </div>
+            <div class="d-flex align-items-center">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href= "{% url 'logout' %}"><span class="glyphicon glyphicon-off" ></span><b> LogOut</b></a></li>
+                    {#<li><a href= "{% url 'logout' %}" ><span class="glyphicon glyphicon-off" ></span><b> LogOut</b></a></li>#}
+                  <li><a href= "/"><button class="btn btn-success">Home</button></a></li>
+                </ul>
+              </div>
+          </div>
+    </nav>
+    <div id="chat-body" class="panel panel-default" style="clear:both;background-color: black;">
+        <div class="panel-heading" style="background-color: black;color: blanchedalmond;">Chat Box</div>
         <div id="msg-list-div" class="panel-body" style="clear:both;">
             <ul id="msg-list" class="list-group">
                 {% for obj in chat %}
@@ -42,12 +56,11 @@
         </div>
     <div class="clearfix"></div>
     </div>
-
     <form id="chat-form" method="post" action= {% url 'chat' %}>
         {% csrf_token %}
         <div id="chat-bottom" class="input-group">
             <input type="text" id="chat-msg" name="chat-msg" class="form-control"/>
-            <span class="input-group-btn">
+            <span class="input-group-btn" >
                 <input class="btn btn-default" id="send" type="submit" value="Send"/>
             </span>
         </div>
