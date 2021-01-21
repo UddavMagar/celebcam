@@ -22,7 +22,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#"><b style="color: white;">Cameo</b></a>
+      <a class="navbar-brand" href="#"><b style="color: white;">Celebcam</b></a>
     </div>
     <div class="d-flex align-items-center">
         <form class="navbar-form navbar-right">
@@ -59,14 +59,14 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Featured</a></li>
-      <li><a href="#">Actors</a></li>
-      <li><a href="#">Reality TV</a></li>
-      <li><a href="#">Athletes</a></li>
-      <li><a href="#">Musicians</a></li>
-      <li><a href="#">Comedians</a></li>
-      <li><a href="#">Creators</a></li>
-      <li><a href="#">All Categories</a></li>
+      <li><a href="#Featured">Featured</a></li>
+      <li><a href="#Actors">Actors</a></li>
+      <li><a href="#TVstars">Reality TV</a></li>
+      <li><a href="#Athletes">Athletes</a></li>
+      <li><a href="#Musicians">Musicians</a></li>
+      <li><a href="#Comedians">Comedians</a></li>
+      <li><a href="#Creators">Creators</a></li>
+      <li><a href="#Categories">All Categories</a></li>
     </ul>
   </div>
 </nav>
@@ -104,8 +104,10 @@
 
 
 <div class="row">
-  <p style="padding-top: 20px;padding-left: 50px;padding-bottom: 20px;
+  <p id="Featured" style="padding-top: 20px;padding-left: 50px;padding-bottom: 20px;
   color: white;font-size: xx-large;"><b>Featured</b></p>
+    <p id="Actors" style="padding-top: 20px;padding-left: 50px;padding-bottom: 20px;
+    color: white;font-size:x-large"><b>Actors</b></p>
   <form action="{% url 'celibritydetail' %}" method="POST">
     {% csrf_token %}
   <div class="col-md-2">
@@ -118,49 +120,230 @@
       </div>
   </div>
   </form>
+  <form action="{% url 'celibritydetail' %}" method="POST">
+    {% csrf_token %}
   <div class="col-md-2">
-      <a href="">
-        <img src="{% static 'images/Kevin.png' %}" alt="Disney" style="width:100%">
+      <a href="http://127.0.0.1:8000/detail">
+        <input type="hidden" id="celebrityName" name="celibrity_name" value="Kevin">
+        <input type="image" src="{% static 'images/Kevin.png' %}" alt="Office" style="width:100%">
       </a>
       <div class="caption">
-        <p>Lorem ipsum...</p>
+        <p style="color: white;">Kevin</p>
       </div>
   </div>
+  </form>
+  <form action="{% url 'celibritydetail' %}" method="POST">
+    {% csrf_token %}
   <div class="col-md-2">
-      <a href="/w3images/fjords.jpg">
-        <img src="{% static 'images/Randy.png' %}" alt="Game of Thrones" style="width:100%">
+      <a href="http://127.0.0.1:8000/detail">
+        <input type="hidden" id="celebrityName" name="celibrity_name" value="Randy">
+        <input type="image" src="{% static 'images/Randy.png' %}" alt="Office" style="width:100%">
       </a>
       <div class="caption">
-        <p>Lorem ipsum...</p>
+        <p style="color: white;">Randy</p>
       </div>
   </div>
+  </form>
+  <form action="{% url 'celibritydetail' %}" method="POST">
+    {% csrf_token %}
   <div class="col-md-2">
-      <a href="/w3images/fjords.jpg">
-        <img src="{% static 'images/Ray.png' %}" alt="BasketBall" style="width:100%">
+      <a href="http://127.0.0.1:8000/detail">
+        <input type="hidden" id="celebrityName" name="celibrity_name" value="Larry">
+        <input type="image" src="{% static 'images/Larry.png' %}" alt="Office" style="width:100%">
       </a>
       <div class="caption">
-        <p>Lorem ipsum...</p>
+        <p style="color: white;">Larry</p>
       </div>
   </div>
+  </form>
+  <form action="{% url 'celibritydetail' %}" method="POST">
+    {% csrf_token %}
   <div class="col-md-2">
-      <a href="/w3images/fjords.jpg">
-        <img src="{% static 'images/Robert.png' %}" alt="Tic Tok" style="width:100%">
+      <a href="http://127.0.0.1:8000/detail">
+        <input type="hidden" id="celebrityName" name="celibrity_name" value="Ray">
+        <input type="image" src="{% static 'images/Ray.png' %}" alt="Office" style="width:100%">
       </a>
       <div class="caption">
-        <p>Lorem ipsum...</p>
+        <p style="color: white;">Ray</p>
       </div>
   </div>
+  </form>
+  <form action="{% url 'celibritydetail' %}" method="POST">
+    {% csrf_token %}
   <div class="col-md-2">
-    <a href="/w3images/fjords.jpg">
-      <img src="{% static 'images/Larry.png' %}" alt="BasketBall" style="width:100%">
+      <a href="http://127.0.0.1:8000/detail">
+        <input type="hidden" id="celebrityName" name="celibrity_name" value="Robert">
+        <input type="image" src="{% static 'images/Robert.png' %}" alt="Office" style="width:100%">
+      </a>
+      <div class="caption">
+        <p style="color: white;">Robert</p>
+      </div>
+  </div>
+  </form>
+  
+</div>
+
+<div class="row">
+  <p id="Musicians" style="padding-top: 20px;padding-left: 50px;padding-bottom: 20px;
+  color: white;font-size:x-large"><b>Musicians</b></p>
+<form action="{% url 'celibritydetail' %}" method="POST">
+  {% csrf_token %}
+<div class="col-md-2">
+    <a href="http://127.0.0.1:8000/detail">
+      <input type="hidden" id="celebrityName" name="celibrity_name" value="Debbie">
+      <input type="image" src="{% static 'images/Debbie.png' %}" alt="Office" style="width:100%">
     </a>
     <div class="caption">
-      <p>Lorem ipsum...</p>
+      <p style="color: white;">Debbie</p>
     </div>
-  </div>
 </div>
+</form>
+<form action="{% url 'celibritydetail' %}" method="POST">
+  {% csrf_token %}
+<div class="col-md-2">
+    <a href="http://127.0.0.1:8000/detail">
+      <input type="hidden" id="celebrityName" name="celibrity_name" value="Jann">
+      <input type="image" src="{% static 'images/Jann.png' %}" alt="Office" style="width:100%">
+    </a>
+    <div class="caption">
+      <p style="color: white;">Jann</p>
+    </div>
+</div>
+</form>
+<form action="{% url 'celibritydetail' %}" method="POST">
+  {% csrf_token %}
+<div class="col-md-2">
+    <a href="http://127.0.0.1:8000/detail">
+      <input type="hidden" id="celebrityName" name="celibrity_name" value="Montell">
+      <input type="image" src="{% static 'images/Montell.png' %}" alt="Office" style="width:100%">
+    </a>
+    <div class="caption">
+      <p style="color: white;">Montell</p>
+    </div>
+</div>
+</form>
+<form action="{% url 'celibritydetail' %}" method="POST">
+  {% csrf_token %}
+<div class="col-md-2">
+    <a href="http://127.0.0.1:8000/detail">
+      <input type="hidden" id="celebrityName" name="celibrity_name" value="Nick">
+      <input type="image" src="{% static 'images/Nick.png' %}" alt="Office" style="width:100%">
+    </a>
+    <div class="caption">
+      <p style="color: white;">Nick</p>
+    </div>
+</div>
+</form>
+<form action="{% url 'celibritydetail' %}" method="POST">
+  {% csrf_token %}
+<div class="col-md-2">
+    <a href="http://127.0.0.1:8000/detail">
+      <input type="hidden" id="celebrityName" name="celibrity_name" value="Peter">
+      <input type="image" src="{% static 'images/Peter.png' %}" alt="Office" style="width:100%">
+    </a>
+    <div class="caption">
+      <p style="color: white;">Peter</p>
+    </div>
+</div>
+</form>
+<form action="{% url 'celibritydetail' %}" method="POST">
+  {% csrf_token %}
+<div class="col-md-2">
+    <a href="http://127.0.0.1:8000/detail">
+      <input type="hidden" id="celebrityName" name="celibrity_name" value="Pierre">
+      <input type="image" src="{% static 'images/Pierre.png' %}" alt="Office" style="width:100%">
+    </a>
+    <div class="caption">
+      <p style="color: white;">Pierre</p>
+    </div>
+</div>
+</form>
+
+</div>
+
+
+
+<div class="row">
+  <p id="TVstars" style="padding-top: 20px;padding-left: 50px;padding-bottom: 20px;
+  color: white;font-size:x-large"><b>TV stars</b></p>
+<form action="{% url 'celibritydetail' %}" method="POST">
+  {% csrf_token %}
+<div class="col-md-2">
+    <a href="http://127.0.0.1:8000/detail">
+      <input type="hidden" id="celebrityName" name="celibrity_name" value="Jenna">
+      <input type="image" src="{% static 'images/Jenna.png' %}" alt="Office" style="width:100%">
+    </a>
+    <div class="caption">
+      <p style="color: white;">Jenna</p>
+    </div>
+</div>
+</form>
+<form action="{% url 'celibritydetail' %}" method="POST">
+  {% csrf_token %}
+<div class="col-md-2">
+    <a href="http://127.0.0.1:8000/detail">
+      <input type="hidden" id="celebrityName" name="celibrity_name" value="Kalilyn">
+      <input type="image" src="{% static 'images/Kalilyn.png' %}" alt="Office" style="width:100%">
+    </a>
+    <div class="caption">
+      <p style="color: white;">Kalilyn</p>
+    </div>
+</div>
+</form>
+<form action="{% url 'celibritydetail' %}" method="POST">
+  {% csrf_token %}
+<div class="col-md-2">
+    <a href="http://127.0.0.1:8000/detail">
+      <input type="hidden" id="celebrityName" name="celibrity_name" value="Tammie">
+      <input type="image" src="{% static 'images/Tammie.png' %}" alt="Office" style="width:100%">
+    </a>
+    <div class="caption">
+      <p style="color: white;">Tammie</p>
+    </div>
+</div>
+</form>
+<form action="{% url 'celibritydetail' %}" method="POST">
+  {% csrf_token %}
+<div class="col-md-2">
+    <a href="http://127.0.0.1:8000/detail">
+      <input type="hidden" id="celebrityName" name="celibrity_name" value="Tim">
+      <input type="image" src="{% static 'images/Tim.png' %}" alt="Office" style="width:100%">
+    </a>
+    <div class="caption">
+      <p style="color: white;">Tim</p>
+    </div>
+</div>
+</form>
+<form action="{% url 'celibritydetail' %}" method="POST">
+  {% csrf_token %}
+<div class="col-md-2">
+    <a href="http://127.0.0.1:8000/detail">
+      <input type="hidden" id="celebrityName" name="celibrity_name" value="TJ">
+      <input type="image" src="{% static 'images/TJ.png' %}" alt="Office" style="width:100%">
+    </a>
+    <div class="caption">
+      <p style="color: white;">TJ</p>
+    </div>
+</div>
+</form>
+<form action="{% url 'celibritydetail' %}" method="POST">
+  {% csrf_token %}
+<div class="col-md-2">
+    <a href="http://127.0.0.1:8000/detail">
+      <input type="hidden" id="celebrityName" name="celibrity_name" value="Wes">
+      <input type="image" src="{% static 'images/Wes.png' %}" alt="Office" style="width:100%">
+    </a>
+    <div class="caption">
+      <p style="color: white;">Wes</p>
+    </div>
+</div>
+</form>
+
+</div>
+
+
   <div class="row">
-    <p style="padding-top: 20px;padding-left: 50px;padding-bottom: 20px;
+    <p id="Categories" style="padding-top: 20px;padding-left: 50px;padding-bottom: 20px;
     color: white;font-size: xx-large;"><b>Categories</b></p>
     <div class="col-md-2">
         <a href="">
@@ -194,8 +377,83 @@
     </div>
   </div>
 
-
-
+  <div class="row">
+    <p id="Athletes" style="padding-top: 20px;padding-left: 50px;padding-bottom: 20px;
+    color: white;font-size:x-large"><b>Athletes</b></p>
+  <form action="{% url 'celibritydetail' %}" method="POST">
+    {% csrf_token %}
+  <div class="col-md-2">
+      <a href="http://127.0.0.1:8000/detail">
+        <input type="hidden" id="celebrityName" name="celibrity_name" value="Brawln">
+        <input type="image" src="{% static 'images/Brawln.png' %}" alt="Office" style="width:100%">
+      </a>
+      <div class="caption">
+        <p style="color: white;">Brawln</p>
+      </div>
+  </div>
+  </form>
+  <form action="{% url 'celibritydetail' %}" method="POST">
+    {% csrf_token %}
+  <div class="col-md-2">
+      <a href="http://127.0.0.1:8000/detail">
+        <input type="hidden" id="celebrityName" name="celibrity_name" value="Chris">
+        <input type="image" src="{% static 'images/Chris.png' %}" alt="Office" style="width:100%">
+      </a>
+      <div class="caption">
+        <p style="color: white;">Chris</p>
+      </div>
+  </div>
+  </form>
+  <form action="{% url 'celibritydetail' %}" method="POST">
+    {% csrf_token %}
+  <div class="col-md-2">
+      <a href="http://127.0.0.1:8000/detail">
+        <input type="hidden" id="celebrityName" name="celibrity_name" value="Jimmy">
+        <input type="image" src="{% static 'images/Jimmy.png' %}" alt="Office" style="width:100%">
+      </a>
+      <div class="caption">
+        <p style="color: white;">Jimmy</p>
+      </div>
+  </div>
+  </form>
+  <form action="{% url 'celibritydetail' %}" method="POST">
+    {% csrf_token %}
+  <div class="col-md-2">
+      <a href="http://127.0.0.1:8000/detail">
+        <input type="hidden" id="celebrityName" name="celibrity_name" value="Matt">
+        <input type="image" src="{% static 'images/Matt.png' %}" alt="Office" style="width:100%">
+      </a>
+      <div class="caption">
+        <p style="color: white;">Matt</p>
+      </div>
+  </div>
+  </form>
+  <form action="{% url 'celibritydetail' %}" method="POST">
+    {% csrf_token %}
+  <div class="col-md-2">
+      <a href="http://127.0.0.1:8000/detail">
+        <input type="hidden" id="celebrityName" name="celibrity_name" value="Mick">
+        <input type="image" src="{% static 'images/Mick.png' %}" alt="Office" style="width:100%">
+      </a>
+      <div class="caption">
+        <p style="color: white;">Mick</p>
+      </div>
+  </div>
+  </form>
+  <form action="{% url 'celibritydetail' %}" method="POST">
+    {% csrf_token %}
+  <div class="col-md-2">
+      <a href="http://127.0.0.1:8000/detail">
+        <input type="hidden" id="celebrityName" name="celibrity_name" value="Tony">
+        <input type="image" src="{% static 'images/Tony.png' %}" alt="Office" style="width:100%">
+      </a>
+      <div class="caption">
+        <p style="color: white;">Tony</p>
+      </div>
+  </div>
+  </form>
+  
+</div>
 
 </body>
 </html>

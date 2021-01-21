@@ -70,8 +70,16 @@ def get_all_msg_db(frm,to):
 
 def celebrity_model(celebrityname):
 	data = db.celebrity_detail.find_one({'celibrityname':celebrityname})
+	imgurl = "http://127.0.0.1:8000/images/"+celebrityname+".png"
+	imgurl1 = "http://127.0.0.1:8000/images/"+celebrityname+"1.png"
+	videourl = "http://127.0.0.1:8000/images/"+celebrityname+".webm"
 	if data:
-		return data['lastname'], data['feature'], data['description'], data['videorate'], data['chatrate']
+		return data['lastname'], data['feature'], data['description'], data['videorate'], data['chatrate'], imgurl , videourl, imgurl1
+
+
+def celebrity_img(feature):
+	data = db.celebrity_detail.find({'feature':feature})
+	return data
 
 
 def request_model(loginuser, celebrityname, servicetype, message):
@@ -141,8 +149,11 @@ def chat_time(datestring,requestuser,celebrityname):
 	hours_added = datetime.timedelta(hours = 1)
 	future_date_and_time = datetime_object + hours_added
 	data = db.chat_detail.find({'celebrityname':celebrityname})
+	now = datetime.datetime.now()+datetime.timedelta(hours=5,minutes=45)
 	for i in data:
-		if (i['nowdatetime']<=datetime_object<=i['futuredatetime']):
+		if now>datetime_object:
+			return 'error'
+		elif (i['nowdatetime']<=datetime_object<=i['futuredatetime']):
 			return 'error'
 		elif (i['nowdatetime']<=future_date_and_time<=i['futuredatetime']):
 			return 'error'

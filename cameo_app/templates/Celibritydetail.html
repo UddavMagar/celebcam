@@ -32,7 +32,7 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="#"><b style="color: white;">Cameo</b></a>
+            <a class="navbar-brand" href="#"><b style="color: white;">Celebcam</b></a>
           </div>
           <div class="d-flex align-items-center">
             <form class="navbar-form navbar-right">
@@ -70,7 +70,7 @@
         <div class="row">
             <div class="col-md-3">
                 <a href="">
-                    <img src="{% static 'images/+celebrityname+.jpg' %}" class="img-circle" alt="Snoop" style="width: 100%;">
+                    <img src="{{ imgurl }}" class="img-circle" alt="Snoop" style="width: 100%;">
                 </a>
             </div>
             <div class="col-md-8">
@@ -152,20 +152,17 @@
           <p style="padding-top: 20px;padding-left: 50px;padding-bottom: 20px;
           color: white;font-size: xx-large;"><b>This week videos</b></p>
           <div class="col-md-4">
-              <a href="">
-                <img src="{% static 'images/Categoriesimg0.jpg' %}" alt="Office" style="width:100%;border: none;">
-              </a>
+                <a href="{{ videourl }}">
+                  <img src="{{imgurl1}}" alt="Game of Thrones" style="width:50%">
+                  
+                </a>
           </div>
           <div class="col-md-4">
-              <a href="">
-                <img src="{% static 'images/Categoriesimg1.jpg' %}" alt="Disney" style="width:100%">
-              </a>
-          </div>
-          <div class="col-md-4">
-              <a href="/w3images/fjords.jpg">
-                <img src="{% static 'images/Categoriesimg2.jpg' %}" alt="Game of Thrones" style="width:100%">
-              </a>
-          </div>
+            <a href="{{ videourl }}">
+              <img src="{{imgurl1}}" alt="Game of Thrones" style="width:50%">
+              
+            </a>
+      </div>
         </div>
         </div>
         {% for data in datas %}

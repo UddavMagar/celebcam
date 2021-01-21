@@ -106,7 +106,6 @@ def homepage(request):
         uname = request.session['username']
         count = models.notification_count(uname)
         status = models.chat_start(uname)
-        print(status)
         if status == True:
             otheruser  = models.other_user(uname)
             return render(request, 'Homepage.html',{'userName': request.session['username'],'count':count,'status':status,'otheruser':otheruser})
@@ -118,8 +117,10 @@ def homepage(request):
 def Celibritydetail(request):
     if request.method == 'POST':
         celebrityname = request.POST.get('celibrity_name', False)
-        lastname, feature, description, videorate, chatrate = models.celebrity_model(celebrityname)
+        lastname, feature, description, videorate, chatrate, imgurl, videourl , imgurl1= models.celebrity_model(celebrityname)
         data = models.comments(celebrityname)
+        print(videourl)
+        print(imgurl)
         if request.session.__contains__('username'):
             uname = request.session['username']
             count = models.notification_count(uname)
@@ -128,15 +129,18 @@ def Celibritydetail(request):
                 otheruser  = models.other_user(uname)
                 return render(request, 'Celibritydetail.html',{'userName': request.session['username'],
                 'celebrityname':celebrityname,'lastname':lastname,'feature':feature,
-                'description':description,'videorate':videorate,'chatrate':chatrate,'count':count,'datas': list(data),'status':status,'otheruser':otheruser})
+                'description':description,'videorate':videorate,'chatrate':chatrate,'count':count,
+                'datas': list(data),'status':status,'otheruser':otheruser,'imgurl':imgurl,'imgurl1':imgurl1,'videourl':videourl})
             return render(request, 'Celibritydetail.html',{'userName': request.session['username'],
             'celebrityname':celebrityname,'lastname':lastname,'feature':feature,
-            'description':description,'videorate':videorate,'chatrate':chatrate,'count':count,'datas': list(data),'status':False})
+            'description':description,'videorate':videorate,'chatrate':chatrate,'count':count,'datas': list(data),'status':False,'imgurl':imgurl,
+            'imgurl1':imgurl1,'videourl':videourl})
         else:
             userlogin = "nouser"
             return render(request, 'Celibritydetail.html',{'userName': None,
             'celebrityname':celebrityname,'lastname':lastname,'feature':feature,
-            'description':description,'videorate':videorate,'chatrate':chatrate,'userlogin':userlogin,'datas': list(data),'status':False})
+            'description':description,'videorate':videorate,'chatrate':chatrate,'userlogin':userlogin,'datas': list(data),'status':False,
+            'imgurl':imgurl,'imgurl1':imgurl1,'videourl':videourl})
 
 
 
